@@ -1,0 +1,6 @@
+workload/workloadConfig.cfg
+RRKernel
+50
+4
+10
+output/ContextSwitch/RR_50_4_10.txt

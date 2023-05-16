@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Profiling
+comment0.text=\r\n\ Record\ of\ time\ spent\ in\ each\ process\ state.\r\n\r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 14/4/2022\r\n
+comment1.params=mode\ PID
+comment1.target=void\ recordTransition(CPU.Mode,\ java.lang.Integer)
+comment2.params=state\ PID
+comment2.target=void\ recordTransition(ProcessControlBlock.State,\ java.lang.Integer)
+comment3.params=target
+comment3.target=void\ createProfile(ProcessControlBlock)
+comment3.text=\r\n\ Obtain\ a\ profiler\ for\ the\ target\ process.\r\n
+comment4.params=filename
+comment4.target=void\ writeCSV(java.lang.String)
+comment4.text=\r\n\ Write\ a\ CSV\ file\ for\ all\ processes\ containing\ process\ states,\ start\ and\ finish\ times.\r\n
+numComments=5

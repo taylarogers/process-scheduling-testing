@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=Kernel
+comment0.text=\r\n\ Interface\ to\ the\ simulated\ kernel.\r\n\ \r\n\ Provides\ two\ sub\ interfaces\:\ a\ system\ call\ interface,\ and\ an\ interrupt\ handler.\ See\ the\ documentation\ for\ those\ interfaces\ for\ details.\r\n\ \r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+numComments=1

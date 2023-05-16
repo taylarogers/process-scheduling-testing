@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=TRACE
+comment0.text=\r\n\ Controller\ for\ execution\ tracing.\ A\ bitwise\ integer\ value\ is\ used\ to\ \r\n\ represent\ the\ level\ of\ detail\:\r\n\ <p>\r\n\ Bit\ 1\:\ value\ 1\:\ Trace\ context\ switches.</br>\r\n\ Bit\ 2\:\ value\ 2\:\ Trace\ system\ call\ entry.</br>\r\n\ Bit\ 3\:\ value\ 4\:\ Trace\ system\ call\ exit.</br>\r\n\ Bit\ 4\:\ value\ 8\:\ Trace\ interrupt\ handler\ entry.</br>\r\n\ Bit\ 5\:\ value\ 16\:\ Trace\ interrupt\ handler\ exit.</br>\r\n\ Bit\ 6\:\ value\ 32\:\ Trace\ behind\ the\ scenes\ discrete\ event\ processing.\r\n\ <p>\r\n\ A\ value\ of\ say,\ 11,\ causes\ context\ switching,\ system\ call\ and\ interrupt\ handler\ entry\ to\ be\ traced.\ \r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 12/3/2016\r\n
+comment1.params=
+comment1.target=TRACE()
+comment2.params=
+comment2.target=int\ GET_TRACE_LEVEL()
+comment2.text=\r\n\ Obtain\ current\ trace\ level.\r\n
+comment3.params=level
+comment3.target=int\ SET_TRACE_LEVEL(int)
+comment3.text=\r\n\ Set\ the\ trace\ level\ with\ the\ given\ bitwise\ int\ value.\r\n
+comment4.params=level\ format\ args
+comment4.target=void\ PRINTF(int,\ java.lang.String,\ java.lang.Object[])
+comment4.text=\r\n\ If\ GET_TRACE_LEVEL()&level\!\=0\ then\ perform\ System.out.printf(format,\ args)\ else\ do\ nothing.\ \r\n
+comment5.params=number\ varargs
+comment5.target=void\ SYSCALL(int,\ java.lang.Object[])
+comment6.params=
+comment6.target=void\ SYSCALL_END()
+comment7.params=interruptType\ varargs
+comment7.target=void\ INTERRUPT(int,\ java.lang.Object[])
+comment8.params=
+comment8.target=void\ INTERRUPT_END()
+numComments=9

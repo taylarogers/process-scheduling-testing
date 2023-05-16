@@ -1,0 +1,6 @@
+workload/workloadConfig.cfg
+RRKernel
+500
+4
+20
+output/TimeQuantum/RR_500_4_20.txt

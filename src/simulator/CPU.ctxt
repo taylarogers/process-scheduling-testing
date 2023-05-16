@@ -1,0 +1,35 @@
+#BlueJ class context
+comment0.target=CPU
+comment0.text=\r\n\ A\ CPU\ object\ stores\ the\ currently\ executing\ process,\ provides\ a\ method\r\n\ for\ performing\ context\ switches,\ and\ records\ the\ \r\n\ number\ of\ context\ switches\ that\ have\ occurred\ during\ execution.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=
+comment1.target=CPU()
+comment10.params=process
+comment10.target=ProcessControlBlock\ contextSwitch(ProcessControlBlock)
+comment10.text=\r\n\ Switch\ the\ current\ process\ out\ and\ the\ given\ process\ in.\ \r\n\ \r\n\ @return\ the\ previously\ executing\ process.\r\n
+comment11.params=
+comment11.target=int\ getContextSwitches()
+comment11.text=\r\n\ Obtain\ the\ number\ of\ context\ switches.\r\n
+comment2.params=
+comment2.target=ProcessControlBlock\ getCurrentProcess()
+comment2.text=\r\n\ Obtain\ the\ currently\ executing\ process.\r\n
+comment3.params=mode
+comment3.target=void\ setMode(CPU.Mode)
+comment3.text=\r\n\ Set\ to\ suoervisor\ or\ user\ mode.\ \r\n
+comment4.params=
+comment4.target=CPU.Mode\ getMode()
+comment4.text=\r\n\ Obtain\ current\ mode.\r\n
+comment5.params=
+comment5.target=int\ execute()
+comment5.text=\r\n\ Exeucte\ the\ current\ process\ in\ user\ space\ until\ it\ terminates\ or\ blocks\ for\ IO.\r\n\ <p>\r\n\ The\ CPU\ will\ update\ the\ system\ timer\ to\ indicate\ the\ amout\ of\ user\ time\ spent\ processing.\r\n\ <p>\r\n\ The\ method\ returns\ the\ quantity\ of\ time\ used.\r\n\ <p>\r\n\ @return\ number\ of\ time\ units\ used.\r\n
+comment6.params=timeUnits
+comment6.target=int\ execute(int)
+comment6.text=\r\n\ Execute\ the\ current\ process\ in\ user\ space\ for\ the\ given\ number\ of\ time\ units.\r\n\ <p>\r\n\ If\ the\ current\ cpu\ burst\ can\ complete\ in\ the\ given\ time,\ then\ the\ CPU\ will\ execute\ \r\n\ the\ next\ instruction\ in\ the\ 'program'.\ This\ must\ be\ a\ system\ call\ (either\ I/O\ or\ terminate).\r\n\ Either\ will\ cause\ this\ process\ to\ be\ switched\ out.\r\n\ <p>\r\n\ The\ CPU\ will\ update\ the\ system\ timer\ to\ indicate\ the\ amout\ of\ user\ time\ spent\ processing.\r\n\ <p>\r\n\ The\ method\ returns\ the\ quantity\ of\ unused\ time\ unit.\ A\ value\ greater\ than\ zero\ means\ that\ \r\n\ the\ current\ cpu\ burst\ was\ completed.\ A\ value\ of\ zero\ means\ the\ current\ cpu\ \r\n\ burst\ may\ or\ may\ not\ have\ completed.\r\n\ \r\n\ @return\ number\ of\ unused\ time\ units.\r\n
+comment7.params=
+comment7.target=void\ next_instruction()
+comment7.text=\r\n\ Process\ I/O\ or\ termination.\r\n
+comment8.params=
+comment8.target=boolean\ isIdle()
+comment8.text=\r\n\ Determine\ whether\ the\ CPU\ is\ idle\ (<code>getCurrentProcess()\=\=null</code>).\r\n
+comment9.params=process
+comment9.target=java.lang.String\ format(ProcessControlBlock)
+numComments=12

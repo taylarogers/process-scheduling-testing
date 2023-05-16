@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=SystemCall
+comment0.text=\r\n\ System\ call\ interface\ for\ OS\ kernel.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=number\ varargs
+comment1.target=int\ syscall(int,\ java.lang.Object[])
+comment1.text=\r\n\ \ Invoke\ the\ system\ call\ with\ the\ given\ number,\ providing\ zero\ or\ more\ arguments.\r\n
+numComments=2

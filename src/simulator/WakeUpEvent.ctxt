@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=WakeUpEvent
+comment0.text=\r\n\ A\ WakeUp\ event\ occurs\ when\ an\ I/O\ operation\ completes.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=systemTime\ deviceID\ processID\ handler
+comment1.target=WakeUpEvent(long,\ int,\ int,\ EventHandler)
+comment1.text=\r\n\ Create\ a\ WakeUpEvent\ for\ the\ given\ process\ waiting\ on\ an\ I/O\ operation\ on\ the\ given\ device.\r\n
+comment2.params=
+comment2.target=int\ getDeviceID()
+comment2.text=\r\n\ Obtain\ the\ I/O\ device.\r\n
+comment3.params=
+comment3.target=int\ getProcessID()
+comment3.text=\r\n\ Obtain\ the\ waiting\ process.\r\n
+comment4.params=
+comment4.target=void\ process()
+comment4.text=\r\n\ Process\ this\ event.\r\n
+comment5.params=
+comment5.target=java.lang.String\ toString()
+numComments=6

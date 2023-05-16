@@ -1,0 +1,6 @@
+workload/workloadConfig.cfg
+FCFSKernel
+
+4
+20
+output/ContextSwitch/FCFS_4_20.txt

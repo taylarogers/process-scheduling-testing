@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=ExecveEvent
+comment0.text=\r\n\ An\ Execve\ event\ represents\ the\ creation\ of\ a\ program\ execution.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=startTime\ progName\ priority\ kernel
+comment1.target=ExecveEvent(long,\ java.lang.String,\ int,\ Kernel)
+comment2.params=
+comment2.target=java.lang.String\ getProgramName()
+comment2.text=\r\n\ Obtain\ the\ name\ of\ the\ program\ that\ must\ be\ run.\r\n
+comment3.params=
+comment3.target=int\ getPriority()
+comment3.text=\r\n\ Obtain\ the\ priority\ of\ the\ program\ that\ must\ be\ run.\r\n
+comment4.params=
+comment4.target=void\ process()
+comment5.params=
+comment5.target=java.lang.String\ toString()
+numComments=6

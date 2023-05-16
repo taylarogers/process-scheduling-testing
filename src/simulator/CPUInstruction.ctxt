@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=CPUInstruction
+comment0.text=\r\n\ Abstract\ representation\ of\ a\ block\ of\ program\ code\ describing\ a\ cpu\ burst.\r\n\ \r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=duration
+comment1.target=CPUInstruction(int)
+comment2.params=
+comment2.target=int\ getBurstRemaining()
+comment2.text=\r\n\ Obtain\ the\ amount\ of\ execution\ time\ required\ to\ complete\ this\ cpu\ burst.\r\n
+comment3.params=timeUnits
+comment3.target=int\ execute(int)
+comment3.text=\r\n\ Simulate\ execution\ of\ cpu\ burst\ for\ <code>timeUnits</code>\ time.\r\n\ \r\n\ If\ this\ cpu\ burst\ can\ complete\ in\ the\ given\ time,\ the\ method\ returns\ the\ quantity\r\n\ of\ unused\ time\ units.\r\n\ If\ this\ burst\ cannot\ complete\ in\ the\ given\ time\ then\ the\ method\ returns\ \r\n\ a\ -ve\ value,\ n,\ \ where\ -n\ represents\ the\ amount\ of\ burst\ time\ remaining.\r\n\ \r\n\ @return\ <code>timeUnits-this.getBurstRemaining()</code>.\r\n
+comment4.params=
+comment4.target=int\ execute()
+comment4.text=\r\n\ Simulate\ execution\ of\ cpu\ burst\ to\ completion.\r\n\ <p>\r\n\ The\ method\ returns\ the\ quantity\ of\ time\ units\ consumed.\r\n\ \r\n\ @return\ <code>this.getDuration()</code>.\r\n
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment5.text=\r\n\ Return\ a\ string\ representation\ of\ the\ form\ "CPU\ <duration>".\r\n
+numComments=6

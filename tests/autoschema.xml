@@ -1,0 +1,541 @@
+<!-- CSC3002F 2016 Operating Systems : Scheduling -->
+<markingguide>
+	<tries>100</tries>
+	<!-- Question One: FCFS. -->
+	<question>
+		<marks>35</marks>
+		<compile>mkdir bin; javac -d bin -cp bin src/simulator/*.java src/*.java 2&gt;&amp;1</compile>
+		<run>java -ea -cp bin SimulateFCFS &lt; testinput.in &gt; testoutput.out 2&gt;&amp;1</run>
+		<check>
+			<file1>testoutput.test</file1>
+			<file2>testoutput.out</file2>
+		</check>
+		<file name="pOne.prg">
+CPU 3000
+		</file>
+		<file name="pTwo.prg">
+CPU 2500
+		</file>
+		<file name="pThree.prg">
+CPU 2300
+IO 400 1
+CPU 2000
+		</file>
+		<file name="pFour.prg">
+CPU 3000
+IO 800 3
+CPU 3100
+IO 450 1
+CPU 1500
+		</file>
+		<!-- FCFS Trial 1 --> 
+		<trial>
+			<compile>echo "Testing FCFS: 1 Process."</compile>
+			<file name="config.cfg">
+PROGRAM 0 0 pOne.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** FCFS Simulator ***
+Enter configuration file name: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000003004 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000003005 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pOne.prg"), {Idle}).
+Time: 0000003008 Kernel: SysCall complete
+System time: 3008
+Kernel time: 8
+User time: 3000
+Idle time: 0
+Context switches: 2
+CPU utilization: 99.73
+			</file>
+		</trial>
+		<!-- FCFS Trial 2 --> 
+		<trial>
+			<compile>echo "Testing FCFS: 2 Processes."</compile>
+			<file name="config.cfg">
+PROGRAM 0 0 pOne.prg
+PROGRAM 10 0 pTwo.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** FCFS Simulator ***
+Enter configuration file name: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000010 Kernel: SysCall(EXECVE, name="pTwo.prg")
+Time: 0000000011 Kernel: SysCall complete
+Time: 0000003005 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000003006 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pOne.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000003009 Kernel: SysCall complete
+Time: 0000005509 Kernel: SysCall(TERMINATE_PROCESS, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000005510 Kernel: Context Switch process(pid=2, state=TERMINATED, name="pTwo.prg"), {Idle}).
+Time: 0000005513 Kernel: SysCall complete
+System time: 5513
+Kernel time: 13
+User time: 5500
+Idle time: 0
+Context switches: 3
+CPU utilization: 99.76
+			</file>
+		</trial>
+		<!-- FCFS Trial 3 --> 
+		<trial>
+			<compile>echo "Testing FCFS: 3 Processes."</compile>
+			<file name="config.cfg">
+PROGRAM 0 0 pOne.prg
+PROGRAM 10 0 pTwo.prg
+PROGRAM 100 0 pOne.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** FCFS Simulator ***
+Enter configuration file name: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000010 Kernel: SysCall(EXECVE, name="pTwo.prg")
+Time: 0000000011 Kernel: SysCall complete
+Time: 0000000100 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000101 Kernel: SysCall complete
+Time: 0000003006 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000003007 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pOne.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000003010 Kernel: SysCall complete
+Time: 0000005510 Kernel: SysCall(TERMINATE_PROCESS, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000005511 Kernel: Context Switch process(pid=2, state=TERMINATED, name="pTwo.prg"), process(pid=3, state=READY, name="pOne.prg")).
+Time: 0000005514 Kernel: SysCall complete
+Time: 0000008514 Kernel: SysCall(TERMINATE_PROCESS, process(pid=3, state=RUNNING, name="pOne.prg"))
+Time: 0000008515 Kernel: Context Switch process(pid=3, state=TERMINATED, name="pOne.prg"), {Idle}).
+Time: 0000008518 Kernel: SysCall complete
+System time: 8518
+Kernel time: 18
+User time: 8500
+Idle time: 0
+Context switches: 4
+CPU utilization: 99.79
+			</file>
+		</trial>
+		<!-- FCFS Trial 4 -->
+		<trial>
+			<compile>echo "Testing FCFS: 1 Process with IO."</compile>
+			<file name="config.cfg">
+DEVICE 1 disk
+PROGRAM 0 0 pThree.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** FCFS Simulator ***
+Enter configuration file name: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(MAKE_DEVICE, id=1,name="disk")
+Time: 0000000001 Kernel: SysCall complete
+Time: 0000000000 Kernel: SysCall(EXECVE, name="pThree.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000002304 Kernel: SysCall(IO_REQUEST, device(id=1), duration=400, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000002305 Kernel: Context Switch process(pid=1, state=WAITING, name="pThree.prg"), {Idle}).
+Time: 0000002308 Kernel: SysCall complete
+Time: 0000002705 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="pThree.prg"))
+Time: 0000002706 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000002709 Kernel: Interrupt exit
+Time: 0000004709 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000004710 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pThree.prg"), {Idle}).
+Time: 0000004713 Kernel: SysCall complete
+System time: 4713
+Kernel time: 16
+User time: 4300
+Idle time: 397
+Context switches: 4
+CPU utilization: 91.24
+			</file>
+		</trial>
+		<!-- FCFS Trial 5 -->
+		<trial>
+			<compile>echo "Testing FCFS: 1 Process with IO, 2 without."</compile>
+			<file name="config.cfg">
+DEVICE 1 disk
+PROGRAM 0 0 pThree.prg
+PROGRAM 10 1 pOne.prg
+PROGRAM 10 1 pTwo.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** FCFS Simulator ***
+Enter configuration file name: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(MAKE_DEVICE, id=1,name="disk")
+Time: 0000000001 Kernel: SysCall complete
+Time: 0000000000 Kernel: SysCall(EXECVE, name="pThree.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000010 Kernel: SysCall(EXECVE, name="pTwo.prg")
+Time: 0000000011 Kernel: SysCall complete
+Time: 0000000011 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000012 Kernel: SysCall complete
+Time: 0000002306 Kernel: SysCall(IO_REQUEST, device(id=1), duration=400, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000002307 Kernel: Context Switch process(pid=1, state=WAITING, name="pThree.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000002310 Kernel: SysCall complete
+Time: 0000002707 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="pThree.prg"))
+Time: 0000002708 Kernel: Interrupt exit
+Time: 0000004811 Kernel: SysCall(TERMINATE_PROCESS, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000004812 Kernel: Context Switch process(pid=2, state=TERMINATED, name="pTwo.prg"), process(pid=3, state=READY, name="pOne.prg")).
+Time: 0000004815 Kernel: SysCall complete
+Time: 0000007815 Kernel: SysCall(TERMINATE_PROCESS, process(pid=3, state=RUNNING, name="pOne.prg"))
+Time: 0000007816 Kernel: Context Switch process(pid=3, state=TERMINATED, name="pOne.prg"), process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000007819 Kernel: SysCall complete
+Time: 0000009819 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000009820 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pThree.prg"), {Idle}).
+Time: 0000009823 Kernel: SysCall complete
+System time: 9823
+Kernel time: 23
+User time: 9800
+Idle time: 0
+Context switches: 5
+CPU utilization: 99.77
+			</file>
+		</trial>	
+		<!-- FCFS Trial 6 -->
+		<trial>
+			<compile>echo "Testing FCFS: 3 Processes, 2 with IO."</compile>
+			<file name="config.cfg">
+DEVICE 1 disk
+DEVICE 3 network
+PROGRAM 0 0 pThree.prg
+PROGRAM 0 0 pFour.prg
+PROGRAM 0 0 pTwo.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** FCFS Simulator ***
+Enter configuration file name: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(MAKE_DEVICE, id=1,name="disk")
+Time: 0000000001 Kernel: SysCall complete
+Time: 0000000001 Kernel: SysCall(MAKE_DEVICE, id=3,name="network")
+Time: 0000000002 Kernel: SysCall complete
+Time: 0000000000 Kernel: SysCall(EXECVE, name="pThree.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000004 Kernel: SysCall(EXECVE, name="pTwo.prg")
+Time: 0000000005 Kernel: SysCall complete
+Time: 0000000005 Kernel: SysCall(EXECVE, name="pFour.prg")
+Time: 0000000006 Kernel: SysCall complete
+Time: 0000002306 Kernel: SysCall(IO_REQUEST, device(id=1), duration=400, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000002307 Kernel: Context Switch process(pid=1, state=WAITING, name="pThree.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000002310 Kernel: SysCall complete
+Time: 0000002707 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="pThree.prg"))
+Time: 0000002708 Kernel: Interrupt exit
+Time: 0000004811 Kernel: SysCall(TERMINATE_PROCESS, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000004812 Kernel: Context Switch process(pid=2, state=TERMINATED, name="pTwo.prg"), process(pid=3, state=READY, name="pFour.prg")).
+Time: 0000004815 Kernel: SysCall complete
+Time: 0000007815 Kernel: SysCall(IO_REQUEST, device(id=3), duration=800, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000007816 Kernel: Context Switch process(pid=3, state=WAITING, name="pFour.prg"), process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000007819 Kernel: SysCall complete
+Time: 0000008616 Kernel: Interrupt(WAKE_UP, device(id=3), process(pid=3, state=WAITING, name="pFour.prg"))
+Time: 0000008617 Kernel: Interrupt exit
+Time: 0000009820 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000009821 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pThree.prg"), process(pid=3, state=READY, name="pFour.prg")).
+Time: 0000009824 Kernel: SysCall complete
+Time: 0000012924 Kernel: SysCall(IO_REQUEST, device(id=1), duration=450, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000012925 Kernel: Context Switch process(pid=3, state=WAITING, name="pFour.prg"), {Idle}).
+Time: 0000012928 Kernel: SysCall complete
+Time: 0000013375 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=3, state=WAITING, name="pFour.prg"))
+Time: 0000013376 Kernel: Context Switch {Idle}, process(pid=3, state=READY, name="pFour.prg")).
+Time: 0000013379 Kernel: Interrupt exit
+Time: 0000014879 Kernel: SysCall(TERMINATE_PROCESS, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000014880 Kernel: Context Switch process(pid=3, state=TERMINATED, name="pFour.prg"), {Idle}).
+Time: 0000014883 Kernel: SysCall complete
+System time: 14883
+Kernel time: 36
+User time: 14400
+Idle time: 447
+Context switches: 8
+CPU utilization: 96.75
+			</file>
+		</trial>
+	</question>
+		
+	<!-- Question Two: Round Robin -->
+	<question>
+		<marks>30</marks>
+		<run>java -ea -cp bin SimulateRR &lt; testinput.in &gt; testoutput.out 2&gt;&amp;1</run>
+		<check>
+			<file1>testoutput.test</file1>
+			<file2>testoutput.out</file2>
+		</check>
+		<file name="pOne.prg">
+CPU 3000
+		</file>
+		<file name="pTwo.prg">
+CPU 2500
+		</file>
+		<file name="pThree.prg">
+CPU 2300
+IO 400 1
+CPU 2000
+		</file>
+		<file name="pFour.prg">
+CPU 3000
+IO 800 3
+CPU 3100
+IO 450 1
+CPU 1500
+		</file>
+		<!-- TESTING PREMPTION -->
+		<!-- RR Trial 1 --> 
+		<trial>
+			<compile>echo "Testing RR Preemption"; echo "Testing RR (slice time less than cpu burst): 1 Process."</compile>
+			<file name="config.cfg">
+PROGRAM 0 0 pOne.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+1500
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** RR Simulator ***
+Enter configuration file name: Enter slice time: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000001504 Kernel: Interrupt(TIME_OUT, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000001505 Kernel: Context Switch process(pid=1, state=RUNNING, name="pOne.prg"), process(pid=1, state=RUNNING, name="pOne.prg")).
+Time: 0000001508 Kernel: Interrupt exit
+Time: 0000003008 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000003009 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pOne.prg"), {Idle}).
+Time: 0000003012 Kernel: SysCall complete
+System time: 3012
+Kernel time: 12
+User time: 3000
+Idle time: 0
+Context switches: 3
+CPU utilization: 99.60
+			</file>
+		</trial>
+		<!-- RR Trial 2 --> 
+		<trial>
+			<compile>echo "Testing RR (slice time less than cpu burst): 2 Processes."</compile>
+			<file name="config.cfg">
+PROGRAM 0 0 pOne.prg
+PROGRAM 10 0 pTwo.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+2000
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** RR Simulator ***
+Enter configuration file name: Enter slice time: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000010 Kernel: SysCall(EXECVE, name="pTwo.prg")
+Time: 0000000011 Kernel: SysCall complete
+Time: 0000002004 Kernel: Interrupt(TIME_OUT, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000002005 Kernel: Context Switch process(pid=1, state=READY, name="pOne.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000002008 Kernel: Interrupt exit
+Time: 0000004008 Kernel: Interrupt(TIME_OUT, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000004009 Kernel: Context Switch process(pid=2, state=READY, name="pTwo.prg"), process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000004012 Kernel: Interrupt exit
+Time: 0000005013 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000005014 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pOne.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000005017 Kernel: SysCall complete
+Time: 0000005517 Kernel: SysCall(TERMINATE_PROCESS, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000005518 Kernel: Context Switch process(pid=2, state=TERMINATED, name="pTwo.prg"), {Idle}).
+Time: 0000005521 Kernel: SysCall complete
+System time: 5521
+Kernel time: 21
+User time: 5500
+Idle time: 0
+Context switches: 5
+CPU utilization: 99.62
+			</file>
+		</trial>
+		<!-- RR Trial 3 --> 
+		<trial>
+			<compile>echo "Testing RR (slice time less than cpu burst): 1 Process with IO."</compile>
+			<file name="config.cfg">
+DEVICE 1 network
+PROGRAM 0 0 pThree.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+2000
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** RR Simulator ***
+Enter configuration file name: Enter slice time: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(MAKE_DEVICE, id=1,name="network")
+Time: 0000000001 Kernel: SysCall complete
+Time: 0000000000 Kernel: SysCall(EXECVE, name="pThree.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000002004 Kernel: Interrupt(TIME_OUT, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000002005 Kernel: Context Switch process(pid=1, state=RUNNING, name="pThree.prg"), process(pid=1, state=RUNNING, name="pThree.prg")).
+Time: 0000002008 Kernel: Interrupt exit
+Time: 0000002308 Kernel: SysCall(IO_REQUEST, device(id=1), duration=400, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000002309 Kernel: Context Switch process(pid=1, state=WAITING, name="pThree.prg"), {Idle}).
+Time: 0000002312 Kernel: SysCall complete
+Time: 0000002709 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=1, state=WAITING, name="pThree.prg"))
+Time: 0000002710 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pThree.prg")).
+Time: 0000002713 Kernel: Interrupt exit
+Time: 0000004713 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pThree.prg"))
+Time: 0000004714 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pThree.prg"), {Idle}).
+Time: 0000004717 Kernel: SysCall complete
+System time: 4717
+Kernel time: 20
+User time: 4300
+Idle time: 397
+Context switches: 5
+CPU utilization: 91.16
+			</file>
+		</trial>
+		<!-- RR Trial 4 --> 
+		<trial>
+			<compile>echo "Testing RR (slice time less than cpu burst): 2 Processes, 1 with IO."</compile>
+			<file name="config.cfg">
+DEVICE 1 network
+PROGRAM 0 0 pOne.prg
+PROGRAM 0 0 pThree.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+2500
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** RR Simulator ***
+Enter configuration file name: Enter slice time: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(MAKE_DEVICE, id=1,name="network")
+Time: 0000000001 Kernel: SysCall complete
+Time: 0000000000 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000004 Kernel: SysCall(EXECVE, name="pThree.prg")
+Time: 0000000005 Kernel: SysCall complete
+Time: 0000002504 Kernel: Interrupt(TIME_OUT, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000002505 Kernel: Context Switch process(pid=1, state=READY, name="pOne.prg"), process(pid=2, state=READY, name="pThree.prg")).
+Time: 0000002508 Kernel: Interrupt exit
+Time: 0000004808 Kernel: SysCall(IO_REQUEST, device(id=1), duration=400, process(pid=2, state=RUNNING, name="pThree.prg"))
+Time: 0000004809 Kernel: Context Switch process(pid=2, state=WAITING, name="pThree.prg"), process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000004812 Kernel: SysCall complete
+Time: 0000005209 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=2, state=WAITING, name="pThree.prg"))
+Time: 0000005210 Kernel: Interrupt exit
+Time: 0000005314 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000005315 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pOne.prg"), process(pid=2, state=READY, name="pThree.prg")).
+Time: 0000005318 Kernel: SysCall complete
+Time: 0000007318 Kernel: SysCall(TERMINATE_PROCESS, process(pid=2, state=RUNNING, name="pThree.prg"))
+Time: 0000007319 Kernel: Context Switch process(pid=2, state=TERMINATED, name="pThree.prg"), {Idle}).
+Time: 0000007322 Kernel: SysCall complete
+System time: 7322
+Kernel time: 22
+User time: 7300
+Idle time: 0
+Context switches: 5
+CPU utilization: 99.70
+			</file>
+		</trial>
+		<!-- RR Trial 5 -->
+		<trial>
+			<compile>echo "Testing RR (slice time less than cpu burst): 3 Processes, 1 with IO."</compile>
+			<file name="config.cfg">
+DEVICE 1 disk
+DEVICE 3 network
+PROGRAM 0 0 pOne.prg
+PROGRAM 0 0 pFour.prg
+PROGRAM 0 0 pTwo.prg
+			</file>
+			<file name="testinput.in">
+config.cfg
+2000
+1
+3
+31
+			</file>
+			<file name="testoutput.test">
+*** RR Simulator ***
+Enter configuration file name: Enter slice time: Enter cost of system call: Enter cost of context switch: Enter trace level: Time: 0000000000 Kernel: SysCall(MAKE_DEVICE, id=1,name="disk")
+Time: 0000000001 Kernel: SysCall complete
+Time: 0000000001 Kernel: SysCall(MAKE_DEVICE, id=3,name="network")
+Time: 0000000002 Kernel: SysCall complete
+Time: 0000000000 Kernel: SysCall(EXECVE, name="pOne.prg")
+Time: 0000000001 Kernel: Context Switch {Idle}, process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000000004 Kernel: SysCall complete
+Time: 0000000004 Kernel: SysCall(EXECVE, name="pTwo.prg")
+Time: 0000000005 Kernel: SysCall complete
+Time: 0000000005 Kernel: SysCall(EXECVE, name="pFour.prg")
+Time: 0000000006 Kernel: SysCall complete
+Time: 0000002004 Kernel: Interrupt(TIME_OUT, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000002005 Kernel: Context Switch process(pid=1, state=READY, name="pOne.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000002008 Kernel: Interrupt exit
+Time: 0000004008 Kernel: Interrupt(TIME_OUT, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000004009 Kernel: Context Switch process(pid=2, state=READY, name="pTwo.prg"), process(pid=3, state=READY, name="pFour.prg")).
+Time: 0000004012 Kernel: Interrupt exit
+Time: 0000006012 Kernel: Interrupt(TIME_OUT, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000006013 Kernel: Context Switch process(pid=3, state=READY, name="pFour.prg"), process(pid=1, state=READY, name="pOne.prg")).
+Time: 0000006016 Kernel: Interrupt exit
+Time: 0000007018 Kernel: SysCall(TERMINATE_PROCESS, process(pid=1, state=RUNNING, name="pOne.prg"))
+Time: 0000007019 Kernel: Context Switch process(pid=1, state=TERMINATED, name="pOne.prg"), process(pid=2, state=READY, name="pTwo.prg")).
+Time: 0000007022 Kernel: SysCall complete
+Time: 0000007522 Kernel: SysCall(TERMINATE_PROCESS, process(pid=2, state=RUNNING, name="pTwo.prg"))
+Time: 0000007523 Kernel: Context Switch process(pid=2, state=TERMINATED, name="pTwo.prg"), process(pid=3, state=READY, name="pFour.prg")).
+Time: 0000007526 Kernel: SysCall complete
+Time: 0000008526 Kernel: SysCall(IO_REQUEST, device(id=3), duration=800, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000008527 Kernel: Context Switch process(pid=3, state=WAITING, name="pFour.prg"), {Idle}).
+Time: 0000008530 Kernel: SysCall complete
+Time: 0000009327 Kernel: Interrupt(WAKE_UP, device(id=3), process(pid=3, state=WAITING, name="pFour.prg"))
+Time: 0000009328 Kernel: Context Switch {Idle}, process(pid=3, state=READY, name="pFour.prg")).
+Time: 0000009331 Kernel: Interrupt exit
+Time: 0000011331 Kernel: Interrupt(TIME_OUT, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000011332 Kernel: Context Switch process(pid=3, state=RUNNING, name="pFour.prg"), process(pid=3, state=RUNNING, name="pFour.prg")).
+Time: 0000011335 Kernel: Interrupt exit
+Time: 0000012435 Kernel: SysCall(IO_REQUEST, device(id=1), duration=450, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000012436 Kernel: Context Switch process(pid=3, state=WAITING, name="pFour.prg"), {Idle}).
+Time: 0000012439 Kernel: SysCall complete
+Time: 0000012886 Kernel: Interrupt(WAKE_UP, device(id=1), process(pid=3, state=WAITING, name="pFour.prg"))
+Time: 0000012887 Kernel: Context Switch {Idle}, process(pid=3, state=READY, name="pFour.prg")).
+Time: 0000012890 Kernel: Interrupt exit
+Time: 0000014390 Kernel: SysCall(TERMINATE_PROCESS, process(pid=3, state=RUNNING, name="pFour.prg"))
+Time: 0000014391 Kernel: Context Switch process(pid=3, state=TERMINATED, name="pFour.prg"), {Idle}).
+Time: 0000014394 Kernel: SysCall complete
+System time: 14394
+Kernel time: 50
+User time: 13100
+Idle time: 1244
+Context switches: 12
+CPU utilization: 91.01
+			</file>
+		</trial>
+	</question>
+</markingguide>

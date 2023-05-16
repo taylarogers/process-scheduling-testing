@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=EventHandler
+comment0.text=\r\n\ \r\n\ \r\n\ @author\ Stephan\ Jamieson\ \r\n\ @version\ 8/3/15\r\n
+comment1.params=event
+comment1.target=void\ process(Event)
+numComments=2

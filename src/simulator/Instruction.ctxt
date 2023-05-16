@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Instruction
+comment0.text=\r\n\ Representation\ of\ program\ instruction\ in\ abstract.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 12/3/2016\r\n
+comment1.params=duration
+comment1.target=Instruction(int)
+comment1.text=\r\n\ Create\ an\ instruction\ of\ the\ given\ duration\ for\ the\ given\ process.\r\n
+comment2.params=
+comment2.target=int\ getDuration()
+comment2.text=\r\n\ Obtain\ this\ instruction's\ duration.\r\n
+numComments=3

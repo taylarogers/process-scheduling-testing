@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=IODevice
+comment0.text=\r\n\ Simulation\ of\ an\ IO\ device.\ A\ device\ has\ an\ id\ and\ type\ name\ (e.g.\ 'printer').\ Processes\ may\ make\ IO\ requests.\r\n\ <p>\r\n\ It\ is\ expected\ that\ an\ IO\ request\ is\ blocking\ i.e.\ the\ calling\ process\ will\ be\ removed\ from\ the\ CPU\r\n\ while\ waiting\ for\ the\ request\ to\ complete.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=ID\ name
+comment1.target=IODevice(int,\ java.lang.String)
+comment1.text=\r\n\ Create\ a\ device\ with\ the\ given\ id\ and\ name\ (e.g.\ 'disk').\r\n
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ Obtain\ the\ device\ name.\r\n
+comment3.params=
+comment3.target=int\ getID()
+comment3.text=\r\n\ Obtain\ the\ device\ id.\r\n
+comment4.params=
+comment4.target=long\ getFreeTime()
+comment5.params=systemTime
+comment5.target=void\ setFreeTime(long)
+comment6.params=duration\ process\ handler
+comment6.target=void\ requestIO(int,\ ProcessControlBlock,\ InterruptHandler)
+comment6.text=\r\n\ Make\ an\ IO\ request\ of\ the\ given\ duration,\ calling\ the\ given\ interrupt\ handler\ \r\n\ when\ the\ request\ is\ complete.\r\n
+comment7.params=event
+comment7.target=void\ process(WakeUpEvent)
+comment8.params=
+comment8.target=java.lang.String\ deviceToString()
+comment9.params=
+comment9.target=java.lang.String\ toString()
+comment9.text=\r\n\ Obtain\ a\ string\ representation\ of\ this\ device\ of\ the\ form\ 'device(id\=<id>)'.\r\n
+numComments=10

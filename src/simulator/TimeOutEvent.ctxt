@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=TimeOutEvent
+comment0.text=\r\n\ A\ timeout\ event\ is\ used\ to\ flag\ the\ end\ of\ the\ current\ execution\ time\ slice.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=systemTime\ processID\ handler
+comment1.target=TimeOutEvent(long,\ int,\ EventHandler)
+comment1.text=\r\n\ Create\ a\ TimeOut\ event\ to\ mark\ the\ end\ of\ the\ execution\ timeslice\ for\ the\ given\ process.\r\n
+comment2.params=
+comment2.target=int\ getProcessID()
+comment2.text=\r\n\ Obtain\ the\ process\ to\ switched\ out\ as\ a\ result\ of\ this\ execution\ timeout.\r\n
+comment3.params=
+comment3.target=void\ process()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5

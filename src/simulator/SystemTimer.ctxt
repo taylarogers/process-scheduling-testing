@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=SystemTimer
+comment0.text=\r\n\ A\ SystemTimer\ (i)\ provides\ support\ for\ simulated\ time,\ and\ (ii)\ support\ for\r\n\ the\ setting\ of\ timeout\ interrupts\ by\ kernel\ code.\ \r\n\ \r\n\ @author\ Stephan\ Jamieson\ \r\n\ @version\ 8/3/2015\r\n
+comment1.params=
+comment1.target=long\ getSystemTime()
+comment1.text=\ \r\n\ Obtain\ the\ current\ system\ time.\r\n
+comment2.params=
+comment2.target=long\ getIdleTime()
+comment2.text=\r\n\ Obtain\ the\ amount\ of\ time\ the\ CPU\ has\ been\ idle.\r\n
+comment3.params=
+comment3.target=long\ getUserTime()
+comment3.text=\r\n\ Obtain\ the\ amount\ of\ time\ the\ system\ has\ spent\ executing\ in\ user\ space.\r\n
+comment4.params=
+comment4.target=long\ getKernelTime()
+comment4.text=\r\n\ Obtain\ the\ amount\ of\ time\ the\ system\ has\ spent\ executing\ in\ kernel\ space.\r\n
+comment5.params=timeUnits\ handler\ varargs
+comment5.target=void\ scheduleInterrupt(int,\ InterruptHandler,\ java.lang.Object[])
+comment5.text=\r\n\ Schedule\ a\ timer\ interrupt\ for\ <code>timeUnits</code>\ time\ units\ in\ the\ future.\r\n\ The\ given\ handler\ receives\ a\ call\ back\ when\ it\ occurs.\r\n
+comment6.params=processID
+comment6.target=void\ cancelInterrupt(int)
+comment6.text=\r\n\ Cancel\ timer\ interrupt\ for\ given\ process\ ID.\r\n
+numComments=7

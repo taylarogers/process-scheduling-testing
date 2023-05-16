@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=EventQueue
+comment0.text=\r\n\ Ordered\ Event\ queue\ for\ discrete\ event\ simulator.\r\n\ Queue\ ordered\ by\ event\ time.\ \r\n\ Events\ may\ share\ the\ same\ time.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 08/3/2015\r\n
+comment1.params=
+comment1.target=EventQueue()
+comment1.text=\r\n\ Create\ an\ empty\ EventQueue.\r\n
+comment2.params=e1\ e2
+comment2.target=int\ compare(Event,\ Event)
+comment3.params=e
+comment3.target=void\ add(Event)
+comment3.text=\r\n\ Insert\ an\ event\ in\ the\ queue.\r\n
+comment4.params=
+comment4.target=Event\ peek()
+comment4.text=\r\n\ View\ event\ at\ front\ of\ queue.\ \r\n
+comment5.params=
+comment5.target=Event\ poll()
+comment5.text=\r\n\ Remove\ event\ at\ front\ of\ queue.\r\n\ \r\n\ @return\ the\ event\ at\ the\ front\ of\ the\ queue\ or\ <code>null</code>.\ \r\n
+comment6.params=event
+comment6.target=boolean\ remove(Event)
+comment6.text=\r\n\ Remove\ the\ given\ event\ from\ the\ queue.\r\n\ @return\ true\ if\ item\ removed,\ false\ if\ not\ found.\r\n
+comment7.params=
+comment7.target=boolean\ isEmpty()
+comment7.text=\r\n\ Determine\ if\ queue\ is\ empty.\r\n
+numComments=8

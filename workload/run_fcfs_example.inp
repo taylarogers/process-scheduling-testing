@@ -1,0 +1,6 @@
+workload/workloadConfig.cfg
+FCFSKernel
+
+5
+20
+output/FCFS_5_20.txt

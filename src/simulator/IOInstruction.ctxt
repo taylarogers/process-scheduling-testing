@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=IOInstruction
+comment0.text=\r\n\ Abstract\ representation\ of\ a\ block\ of\ program\ code\ describing\ an\ I/O\ burst.\r\n\ \r\n\ @author\ Stephan\ Jamieson\r\n\ @version\ 8/3/15\r\n
+comment1.params=duration\ deviceID
+comment1.target=IOInstruction(int,\ int)
+comment1.text=\r\n\ Create\ an\ IOInstruction\ of\ the\ given\ duration\ for\ the\ given\ process\ and\ I/O\ device.\r\n
+comment2.params=
+comment2.target=int\ getDeviceID()
+comment2.text=\r\n\ Get\ the\ ID\ of\ the\ I/O\ device.\r\n
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment3.text=\r\n\ Return\ a\ string\ representation\ of\ the\ form\ "IO\ <duration>\ <device\ id>".\r\n
+numComments=4

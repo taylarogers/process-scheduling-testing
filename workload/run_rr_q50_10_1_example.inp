@@ -1,0 +1,6 @@
+workload/workloadConfig.cfg
+RRKernel
+50
+1
+10
+output/RR50_1_10.txt
